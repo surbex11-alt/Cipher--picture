@@ -1,18 +1,257 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent">
-<LinearLayout android:orientation="vertical" android:padding="16dp" android:layout_width="match_parent" android:layout_height="wrap_content">
-<TextView android:text="Cipher Image Decoder" android:textSize="26sp" android:textStyle="bold" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-<TextView android:text="Image → OCR → correction → cipher analysis" android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingBottom="12dp"/>
-<LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content">
-<Button android:id="@+id/openButton" android:text="Open Image" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"/>
-<Button android:id="@+id/ocrButton" android:text="Run OCR" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"/>
-</LinearLayout>
-<ImageView android:id="@+id/imageView" android:layout_width="match_parent" android:layout_height="260dp" android:adjustViewBounds="true" android:scaleType="fitCenter" android:contentDescription="Selected cipher image"/>
-<TextView android:text="Editable transcription — correct OCR errors here:" android:textStyle="bold" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp"/>
-<EditText android:id="@+id/inputText" android:layout_width="match_parent" android:layout_height="150dp" android:gravity="top|start" android:inputType="textMultiLine" android:fontFamily="monospace" android:hint="OCR text appears here..."/>
-<Button android:id="@+id/analyzeButton" android:text="Analyze Cipher" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-<Button android:id="@+id/saveButton" android:text="Save Report" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-<TextView android:text="Results" android:textStyle="bold" android:textSize="18sp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp"/>
-<TextView android:id="@+id/resultText" android:layout_width="match_parent" android:layout_height="wrap_content" android:fontFamily="monospace" android:textIsSelectable="true" android:padding="8dp"/>
-</LinearLayout>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- ReactionsPK Branding Header -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:background="@drawable/header_background"
+            android:padding="16dp">
+
+            <!-- Logo Container -->
+            <ImageView
+                android:id="@+id/reactionsPkLogo"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:scaleType="fitCenter"
+                android:contentDescription="ReactionsPK Logo"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Title -->
+            <TextView
+                android:text="Cipher Image Decoder"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center" />
+
+            <!-- Subtitle -->
+            <TextView
+                android:text="Real Reactions • Real Encryption"
+                android:textSize="14sp"
+                android:textColor="@android:color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="4dp" />
+
+            <!-- Tagline -->
+            <TextView
+                android:text="Upload • Decode • Analyze"
+                android:textSize="12sp"
+                android:textColor="#00BCD4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+
+        <!-- Main Content Card -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/card_background"
+            android:padding="16dp"
+            android:layout_marginBottom="12dp">
+
+            <!-- Workflow Description -->
+            <TextView
+                android:text="Image Processing Workflow"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="@android:color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:text="Image → OCR → Correction → Cipher Analysis"
+                android:textSize="13sp"
+                android:textColor="#B0BEC5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="12dp" />
+
+            <!-- Action Buttons Row 1 -->
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp">
+
+                <Button
+                    android:id="@+id/openButton"
+                    android:text="📷 Open Image"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:background="@drawable/button_primary" />
+
+                <Button
+                    android:id="@+id/ocrButton"
+                    android:text="🔍 Run OCR"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:background="@drawable/button_secondary" />
+            </LinearLayout>
+
+            <!-- Image Preview -->
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="260dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:contentDescription="Selected Image"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/image_placeholder" />
+
+            <!-- Transcription Section -->
+            <TextView
+                android:text="Edit & Correct Transcription"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:textColor="@android:color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:text="Correct any OCR errors below (O/0, I/1, U/V, S/5, B/8)"
+                android:textSize="12sp"
+                android:textColor="#FF6B9D"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp" />
+
+            <EditText
+                android:id="@+id/inputText"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:gravity="top|start"
+                android:inputType="textMultiLine"
+                android:fontFamily="monospace"
+                android:hint="Paste or edit cipher text here..."
+                android:textColorHint="#757575"
+                android:textColor="@android:color/white"
+                android:background="@drawable/input_field"
+                android:padding="12dp"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Analysis Buttons -->
+            <Button
+                android:id="@+id/analyzeButton"
+                android:text="🔐 Analyze Cipher"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:background="@drawable/button_accent"
+                android:layout_marginBottom="8dp" />
+
+            <Button
+                android:id="@+id/saveButton"
+                android:text="💾 Save Report"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:background="@drawable/button_success"
+                android:layout_marginBottom="16dp" />
+        </LinearLayout>
+
+        <!-- Results Section -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/results_background"
+            android:padding="16dp">
+
+            <TextView
+                android:text="Analysis Results"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="@android:color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp" />
+
+            <TextView
+                android:id="@+id/resultText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:textIsSelectable="true"
+                android:textColor="#00E676"
+                android:textSize="11sp"
+                android:padding="12dp"
+                android:background="@drawable/result_text_background"
+                android:text="Waiting for analysis..." />
+        </LinearLayout>
+
+        <!-- Footer Branding -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:padding="12dp">
+
+            <TextView
+                android:text="✦ Powered by ReactionsPK ✦"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="#FF1493"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center" />
+
+            <TextView
+                android:text="Real • React • Earn"
+                android:textSize="11sp"
+                android:textColor="#00BCD4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="4dp" />
+
+            <TextView
+                android:text="Community Powered Encryption Tools"
+                android:textSize="10sp"
+                android:textColor="#B0BEC5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+    </LinearLayout>
 </ScrollView>
